@@ -1,11 +1,41 @@
 
 <div class="login-container">
-  <div class="login-card">
+  <div class="row" style="width: 100vw;height: 100vh;">
+    <div class="col col-12 col-md-6 col-lg-4 text-center" style="padding: 50px 0;background-color: #621132;background: linear-gradient(0deg,rgba(98, 17, 50, 1) 0%, rgba(120, 21, 61, 1) 40%, rgba(120, 21, 61, 1) 60%, rgba(98, 17, 50, 1) 100%);color:#ffffff;align-content: center;">
+      <div class="mb-3">
+        <img id="logo" src="assets/img_fotter.png" alt="Escudo del Estado de Hidalgo" />
+      </div>
+      <div>imagen</div>
+      <h3 style="padding: 0 5%;">Gestión Transparente y Segura</h3>
+      <div class="mt-4" style="padding: 0 5%;">Sistema exclusivo para personal autorizado de la Secretaría de Educación Pública de Hidalgo</div>
+    </div>
+    <div class="col col-12 col-md-6 col-lg-8 text-center" style="padding: 80px 0;align-content: center;color: #444;">
+      <h3 style="padding: 0 5%;text-transform: uppercase;">Bienvenido al Sistema de Nomina</h3>
+      <div style="padding: 0 5%;text-transform: uppercase;">inicie sesión para continuar</div>
+      <form action="" style="max-width: 500px;margin: auto;padding: 0 5%;">
+        <div class="input-group mt-5 mb-3">
+          <span class="input-group-text" id="basic-addon1">@</span>
+          <input type="text" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">@</span>
+          <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        </div>
+        <div class="d-grid gap-2 mt-3">
+          <button class="btn btn-primary" type="button">Iniciar Sesión</button>
+        </div>
+        <div class="mt-5">¿Olvidaste tu contraseña?</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- <div class="login-card">
     <div class="logo">
       <img src="assets/logo.png" alt="Escudo del Estado de Hidalgo" />
     </div>
     <h2>Iniciar sesión</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
       <div class="form-group">
         <label for="usuario">Usuario</label>
         <input id="usuario" formControlName="user" type="text" class="form-control"
@@ -21,7 +51,7 @@
         <input id="password" formControlName="password" type="password" class="form-control"
           placeholder="Ingrese su contraseña" />
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
-          Contraseña es requerida 6 digitos min.
+          Contraseña es requerida 6 dígitos min.
         </div>
       </div>
       <button type="submit" id="loginButton" class="btn-login btn-primary" [disabled]="loginForm.invalid">
@@ -29,11 +59,8 @@
         <ng-template #loadingTemplate>
             <div class="loader"></div>
         </ng-template>
-    </button>
-    
-
-
+      </button>
 
     </form>
-  </div>
+  </div> -->
 </div>

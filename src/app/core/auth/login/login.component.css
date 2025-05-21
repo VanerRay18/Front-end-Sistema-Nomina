@@ -1,5 +1,15 @@
+#logo {
+  width: 120px;
+}
+
+
+
+
+
+
 body {
-    font-family: 'Arial', sans-serif;
+    /* font-family: 'Arial', sans-serif; */
+    font-family: "Montserrat", sans-serif;
     background-color: #F1F5F9; /* Color Morena */
     margin: 0;
     padding: 0;
@@ -35,10 +45,10 @@ body {
     margin-bottom: 20px;
   }
 
-  h2 {
-    color: #8a1538; /* Color Morena */
+  /* h2 {
+    color: #8a1538;
     margin-bottom: 20px;
-  }
+  } */
 
   .form-group {
     margin-bottom: 15px;
