@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
     private busqueda: BusquedaserlService
   ) {
     this.loginForm = this.fb.group({
-      user: ['', [Validators.required , Validators.minLength(4) ]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      user: ['', [Validators.required , Validators.minLength(13) ]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(1);
     this.isLoading = true; // Activar el loader
     const loginButton = document.getElementById('loginButton') as HTMLButtonElement;
     loginButton.disabled = true; // Deshabilitar el botón mientras se procesa
