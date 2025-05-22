@@ -5,35 +5,36 @@
       <div class="mb-3">
         <img id="logo" src="assets/logo_gobhidalgo.png" alt="Escudo del Estado de Hidalgo" />
       </div>
-      <div>imagen</div>
+      <div class="mb-3" style="overflow: hidden;"><img src="assets/Light-brown-in-Jacket10.png" alt="saludo de manos" style="width: 100%;"></div>
       <h2 style="padding: 0 5%;">Gestión Transparente y&nbsp;Segura</h2>
       <div class="mt-4" style="padding: 0 5%;">Sistema exclusivo para personal autorizado de la Secretaría de Educación Pública de Hidalgo</div>
     </div>
     <div class="col col-12 col-md-6 col-lg-8 text-center" style="padding: 80px 0;align-content: center;color: #444;">
-      <h3 style="padding: 0 5%;text-transform: uppercase;">Bienvenido al Sistema de Nomina</h3>
-      <div class="mb-5" style="padding: 0 5%;text-transform: uppercase;">inicie sesión para continuar</div>
+      <h3 style="padding: 0 5%;text-transform: uppercase;font-weight: bold;">Bienvenido al Sistema de Administración Interna </h3>
+      <div class="mb-5" style="padding: 0px 5%;text-transform: uppercase;">inicie sesión para continuar</div>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action="" style="max-width: 500px;margin: auto;padding: 0 5%;">
         
         <div *ngIf="loginForm.get('user')?.invalid && loginForm.get('user')?.touched" class="alert alert-danger alert-dismissible fade show" role="alert">
-          ♦ <i class="bi bi-exclamation-octagon me-1"></i>
+          <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
           El correo electrónico es requerido
         </div>
         <div class="form-floating mb-3">
-          <input id="email" formControlName="user" type="email" class="form-control" id="floatingInput" placeholder="nombre.apellido@seph.com.mx">
+          <input id="usuario" formControlName="user" type="email" class="form-control" style="border-radius: 100px;text-align: center;" placeholder="nombre.apellido@seph.com.mx">
           <label for="floatingInput">Correo Electrónico</label>
         </div>
         
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="alert alert-danger alert-dismissible fade show" role="alert">
-          ♦ <i class="bi bi-exclamation-octagon me-1"></i>
+          <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
           La contraseña es requerida
         </div>
         <div class="form-floating mb-3">
-          <input id="password" formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+          <input id="password" formControlName="password" type="password" class="form-control" style="border-radius: 100px;text-align: center;" placeholder="Contraseña">
           <label for="floatingPassword">Contraseña</label>
         </div>
 
         <div class="d-grid gap-2 mt-3">
-          <button type="submit" id="loginButton" class="btn btn-primary" type="button" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+          <button type="submit" id="loginButton" class="btn btn-primary" style="background-color: #621132;padding: 15px;
+  border-radius: 100px;" [disabled]="loginForm.invalid">Iniciar Sesión</button>
         </div>
         <a href="#"><div class="mt-5">¿Olvidaste tu contraseña?</div></a>
       </form>
