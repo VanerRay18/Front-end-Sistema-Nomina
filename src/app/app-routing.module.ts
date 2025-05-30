@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'pages',
     component: LayoutComponent,
-    canActivate: [LoggedGuard],
+    // canActivate: [LoggedGuard],
     children: [
       {
         path:'Extras',

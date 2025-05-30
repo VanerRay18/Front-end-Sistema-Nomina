@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
     private busqueda: BusquedaserlService
   ) {
     this.loginForm = this.fb.group({
-      user: ['', [Validators.required , Validators.minLength(13) ]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      user: ['', [Validators.required , Validators.minLength(15) ]], // nombre.apellido@seph.gob.mx
+      password: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(1);
+
     this.isLoading = true; // Activar el loader
     const loginButton = document.getElementById('loginButton') as HTMLButtonElement;
     loginButton.disabled = true; // Deshabilitar el botón mientras se procesa
@@ -49,10 +49,12 @@ export class LoginComponent implements OnInit {
         user: this.loginForm.value.user,
         password: this.loginForm.value.password
     };
+
+    this.router.navigate(['pages/Extras/Verifycode']); // Redirige al login
     
-    // this.authService.authLogg(data).subscribe(
-    //     (response) => {
-    //       console.log(response);
+    this.authService.authLogg(data).subscribe(
+        (response) => {
+          console.log(response);
     //         const token = response.headers.get('Authorization');
     //         // const tokenExpiration = new Date().getTime() + (2 * 60 * 60 * 1000) + (58 * 60 * 1000); // 2 horas y 58 minutos
     //         const tokenExpiration = new Date().getTime() + (5000);
@@ -76,18 +78,19 @@ export class LoginComponent implements OnInit {
 
     //         this.isLoading = false; // Desactivar el loader
     //         loginButton.disabled = false; // Habilitar el botón nuevamente
-    //     },
-    //     (error) => {
-    //         Swal.fire({
-    //           title: error.error.message != null?'Error':'Error con el sistema...',
-    //             text: error.error.message != null? error.error.message:'Favor de acudir al area de mantenimiento',
-    //             icon: 'error',
-    //             confirmButtonText: 'OK'
-    //         });
-    //         this.isLoading = false; // Desactivar el loader
-    //         loginButton.disabled = false; // Habilitar el botón nuevamente
-    //     }
-    // );
+        },
+        (error) => {
+            Swal.fire({
+              title: error.error.message != null?'Error':'Error con el sistema...',
+                text: error.error.message != null? error.error.message:'Favor de acudir al area de mantenimiento',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            this.isLoading = false; // Desactivar el loader
+            loginButton.disabled = false; // Habilitar el botón nuevamente
+        }
+    );
+
 }
 
 
