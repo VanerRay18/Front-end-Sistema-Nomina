@@ -55,29 +55,29 @@ export class LoginComponent implements OnInit {
     this.authService.authLogg(data).subscribe(
         (response) => {
           console.log(response);
-    //         const token = response.headers.get('Authorization');
-    //         // const tokenExpiration = new Date().getTime() + (2 * 60 * 60 * 1000) + (58 * 60 * 1000); // 2 horas y 58 minutos
-    //         const tokenExpiration = new Date().getTime() + (5000);
-    //         const rolId = response.body.data.roles;
-    //         const userId = response.body.data.userId;
-    //         const path = response.body.data.config.principal;
-    //         const extras = response.body.data.config.extras
-    //         this.PermisosUserService.save(response.body.data.permisos);
-    //         // Guardar el token y otros datos en localStorage
-    //         if (token) {
-    //             localStorage.setItem('userId', userId);
-    //              localStorage.setItem('extras', extras != null? extras : '');
-    //             // localStorage.setItem('eliminar', eliminar);
-    //             // localStorage.setItem('agregar', agregar);
-    //             localStorage.setItem('rolId', rolId);
-    //             localStorage.setItem('token', token);
-    //             localStorage.setItem('tokenExpiration', tokenExpiration.toString());
+            const token = response.headers.get('Authorization');
+            // const tokenExpiration = new Date().getTime() + (2 * 60 * 60 * 1000) + (58 * 60 * 1000); // 2 horas y 58 minutos
+            const tokenExpiration = new Date().getTime() + (5000);
+            const rolId = response.body.data.roles;
+            const userId = response.body.data.userId;
+            const path = response.body.data.config.principal;
+            const extras = response.body.data.config.extras
+            this.PermisosUserService.save(response.body.data.permisos);
+            // Guardar el token y otros datos en localStorage
+            if (token) {
+                localStorage.setItem('userId', userId);
+                 localStorage.setItem('extras', extras != null? extras : '');
+                // localStorage.setItem('eliminar', eliminar);
+                // localStorage.setItem('agregar', agregar);
+                localStorage.setItem('rolId', rolId);
+                localStorage.setItem('token', token);
+                localStorage.setItem('tokenExpiration', tokenExpiration.toString());
 
-    //             this.router.navigate([path]); // Navegar al nuevo path
-    //         }
+                this.router.navigate([path]); // Navegar al nuevo path
+            }
 
-    //         this.isLoading = false; // Desactivar el loader
-    //         loginButton.disabled = false; // Habilitar el botón nuevamente
+            this.isLoading = false; // Desactivar el loader
+            loginButton.disabled = false; // Habilitar el botón nuevamente
         },
         (error) => {
             Swal.fire({

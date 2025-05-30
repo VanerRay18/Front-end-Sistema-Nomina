@@ -31,6 +31,10 @@ export class AuthService {
     return this.http.post<any>(`${environment.baseService}${'/login'}`, data, {observe:'response'})
   }
 
+  authToken(data: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseService}${'/users/validateToken'}`, data, {observe:'response'})
+  }
+
   getToken(): string | null {
     return localStorage.getItem('jwt'); // Obtener el token del localStorage
   }

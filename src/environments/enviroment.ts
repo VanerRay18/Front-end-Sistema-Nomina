@@ -7,7 +7,7 @@ export const environment: AppEnvironment = {
 // baseService: 'http://localhost:8080',
  // baseService: 'http://redpersonalihe.seph.gob.mx:8088',
   baseService: 'http://10.10.10.208:8082',
-  logoutTime: 5000,
+  logoutTime: 10680000,
   authUrl: 'https://www.google.com'
 };
 //ng build --configuration=production

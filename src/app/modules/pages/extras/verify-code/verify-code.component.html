@@ -1,1 +1,22 @@
-<p>verify-code works!</p>
+
+<div class="verifycode-container">
+  <div class="row" style="width: 100vw;height: 100vh;">
+
+      
+      <form [formGroup]="verifycodeForm" (ngSubmit)="onSubmit()"  style="margin: auto;padding: 0 10%;">
+        
+        <p>Hemos enviado un código de acceso a la siguiente dirección de correo <b>correo_usuario</b></p>
+		<p>Nota: El código es único y temporal, y será necesario para completar el proceso de validación. Si no encuentras el correo en tu bandeja de entrada, revisa también la carpeta de spam o correo no deseado.</p>
+		<p>Ingresa el código para validar tu identidad:</p>
+        
+        <input id="token" formControlName="token" class="" type="text" class="form-control" placeholder="Código de verificación" style="height: 55px;border-radius: 100px;text-align: center;margin-bottom:10px;">
+
+        <div class="d-grid gap-2 mt-3">
+          <button type="submit" id="verifycodeButton" class="btn btn-primary" style="background-color: #621132; padding: 15px; border-radius: 100px;border: solid 1px rgba(0,0,0,0.5);">Validar</button>
+        </div>
+        <a href="#"><div class="mt-5">¿Volver a enviar un nuevo código?</div></a>
+      </form>
+      <div class="" style="color: rgba(0,0,0,0.1);margin-bottom: 40px; font-size: 13px;position: absolute;width: 100%;text-align: center;bottom: 0;">2025 - DEPARTAMENTO DE SISTEMAS Y APOYO TÉCNICO</div>
+
+  </div>
+</div>
