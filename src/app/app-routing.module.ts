@@ -5,12 +5,13 @@ import { LayoutComponent } from './modules/layout/layout.component';
 import { LoginComponent } from './core/auth/login/login.component';
 import { LoggedGuard } from './core/guards/logged.guard';
 import { TestComponent } from './modules/pages/extras/test/test.component';
+import { ChangePasswordComponent } from './modules/pages/extras/change-password/change-password.component';
 
 
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
-  { path: 'Test', component: TestComponent },
+  {path: 'Test', component: ChangePasswordComponent },
   {path: 'login',
     component: LoginComponent,
   },

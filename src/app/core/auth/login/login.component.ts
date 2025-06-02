@@ -50,17 +50,18 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.value.password
     };
 
-    this.router.navigate(['pages/Extras/Verifycode']); // Redirige al login
+    //this.router.navigate(['pages/Extras/Verifycode']); // Redirige al login
     
     this.authService.authLogg(data).subscribe(
         (response) => {
-          console.log(response);
+          console.log('reponse: ',response);
             const token = response.headers.get('Authorization');
             // const tokenExpiration = new Date().getTime() + (2 * 60 * 60 * 1000) + (58 * 60 * 1000); // 2 horas y 58 minutos
             const tokenExpiration = new Date().getTime() + (5000);
             const rolId = response.body.data.roles;
             const userId = response.body.data.userId;
             const path = response.body.data.config.principal;
+            console.log('a: ',path);
             const extras = response.body.data.config.extras
             this.PermisosUserService.save(response.body.data.permisos);
             // Guardar el token y otros datos en localStorage

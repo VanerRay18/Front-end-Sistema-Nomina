@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,7 +13,7 @@ export class VerifyCodeComponent implements OnInit{
   
   verifycodeForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService,) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.verifycodeForm = this.fb.group({
       token: ['', [
         Validators.required, 
@@ -27,14 +28,27 @@ export class VerifyCodeComponent implements OnInit{
 
   onSubmit(){
 
-    const data = {
-        Authorization: 1, 
-        token: this.verifycodeForm.value.token
-    };
-console.log(data);
-    this.authService.authToken(data).subscribe(
+  let token = this.verifycodeForm.value.token;
+
+    this.authService.authToken(token).subscribe(
     (response) => {
-      console.log(response);
+      if( response.success == true ){
+        Swal.fire({
+            title: '',
+            text: ""+response.message+"",
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+        this.router.navigate(['/pages/Extras/changePassword']); // Navegar al nuevo path
+      } else {
+        Swal.fire({
+            title: '',
+            text: ""+response.message+"",
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+      }
+      
         // const token = response.headers.get('Authorization');
         // // const tokenExpiration = new Date().getTime() + (2 * 60 * 60 * 1000) + (58 * 60 * 1000); // 2 horas y 58 minutos
         // const tokenExpiration = new Date().getTime() + (5000);

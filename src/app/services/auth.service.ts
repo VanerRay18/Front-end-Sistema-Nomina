@@ -31,9 +31,28 @@ export class AuthService {
     return this.http.post<any>(`${environment.baseService}${'/login'}`, data, {observe:'response'})
   }
 
-  authToken(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.baseService}${'/users/validateToken'}`, data, {observe:'response'})
+  authToken(token: any): Observable<ApiResponse> {
+    let headers = new HttpHeaders({'token': token})
+    return this.http.post<ApiResponse>(`${environment.baseService}${'/users/validateToken'}`, null, 
+      {headers}
+    );
   }
+
+  savePassword(password: any): Observable<ApiResponse> {
+    console.log('a: ',password);
+    let headers = new HttpHeaders({'password': password})
+    return this.http.post<ApiResponse>(`${environment.baseService}${'/users/changePassword'}`,null,
+      {headers}
+    );
+  }
+
+  // changeStatus(nominaId: any, status: any): Observable<ApiResponse> {//Cambia el estado de la nomina
+  //   let headers = new HttpHeaders({'nominaId': nominaId, 'status': status})
+  //   return this.http.post<ApiResponse>(`${environment.baseService}${'/nomina/changeStatus'}`,null,
+  //     {headers}
+  //   );
+  // }
+
 
   getToken(): string | null {
     return localStorage.getItem('jwt'); // Obtener el token del localStorage

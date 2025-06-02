@@ -4,6 +4,7 @@ import { FinanzasComponent } from './finanzas/finanzas.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TestComponent } from './test/test.component';
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -11,7 +12,8 @@ import { VerifyCodeComponent } from './verify-code/verify-code.component';
 const routes: Routes = [
   {path: 'Perfil', component: PerfilComponent},
   {path: 'Test', component: TestComponent},
-  {path: 'Verifycode', component: VerifyCodeComponent} 
+  {path: 'Verifycode', component: VerifyCodeComponent},
+  {path: 'changePassword', component: ChangePasswordComponent} 
 ];
 
 
