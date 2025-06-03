@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -20,7 +21,7 @@ export class ChangePasswordComponent {
 
   password_valido = false;
   
-  constructor(private fb: FormBuilder, private authService: AuthService, private FormsModule: FormsModule) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private FormsModule: FormsModule, private router: Router) {
     this.changepasswordForm = this.fb.group({
       firstPassword: ['', [
         Validators.required, 
@@ -97,6 +98,7 @@ export class ChangePasswordComponent {
             this.authService.savePassword(data.firstpass).subscribe(
               (response) => {
                 console.log(response);
+                this.router.navigate(['/pages/Inicio/General']); // Navegar al nuevo path
               },
               (error) => {
                 console.log(error);
