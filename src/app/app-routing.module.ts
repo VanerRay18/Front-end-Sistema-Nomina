@@ -6,12 +6,14 @@ import { LoginComponent } from './core/auth/login/login.component';
 import { LoggedGuard } from './core/guards/logged.guard';
 import { TestComponent } from './modules/pages/extras/test/test.component';
 import { ChangePasswordComponent } from './modules/pages/extras/change-password/change-password.component';
+import { RecursosHumanosModule } from './modules/pages/recursos-humanos/recursos-humanos.module';
+import { CRUDTrabajadoresComponent } from './modules/pages/recursos-humanos/crudtrabajadores/crudtrabajadores.component';
 
 
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
-  {path: 'Test', component: ChangePasswordComponent },
+  {path: 'Test', component: CRUDTrabajadoresComponent },
   {path: 'login',
     component: LoginComponent,
   },
@@ -39,6 +41,13 @@ const routes: Routes = [
         loadChildren:() =>
           import('./modules/pages/administration/administration.module').then(
             (m) => m.AdministrationModule
+          ),
+      },
+      {
+        path:'RH',
+        loadChildren:() =>
+          import('./modules/pages/recursos-humanos/recursos-humanos.module').then(
+            (m) => m.RecursosHumanosModule
           ),
       }
     ],
