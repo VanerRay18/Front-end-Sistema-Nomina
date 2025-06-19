@@ -1,3 +1,4 @@
+import { RecursosHumanosModule } from './modules/pages/recursos-humanos/recursos-humanos.module';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,7 +35,8 @@ import { AdministrationModule } from './modules/pages/administration/administrat
     ExtrasRoutingModule,
     LayoutModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    RecursosHumanosModule
   ],
   providers: [
     {

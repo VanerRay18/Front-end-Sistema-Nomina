@@ -84,7 +84,7 @@ getData() {
       perfil: 'Administrativo',
       nss: '98765432109',
       regimen: 'Especial',
-      tipo_contratacion: 'Honorarios',
+      tipo_contratacion: 'Base',
       nivel: 'A2',
       nivel_academico: 'Maestría',
       activo: false
@@ -127,7 +127,7 @@ getData() {
       perfil: 'Directivo',
       nss: '66778899001',
       regimen: 'Especial',
-      tipo_contratacion: 'Base',
+      tipo_contratacion: 'Honorarios',
       nivel: 'D1',
       nivel_academico: 'Doctorado',
       activo: false
