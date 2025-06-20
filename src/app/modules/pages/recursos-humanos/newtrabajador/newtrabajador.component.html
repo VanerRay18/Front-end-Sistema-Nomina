@@ -1,120 +1,149 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Default Tabs</h5>
+        <h5 class="card-title">Datos del Docente</h5>
 
         <!-- Default Tabs -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="paso1-tab" data-bs-toggle="tab" data-bs-target="#paso1" type="button"
-                    role="tab" aria-controls="paso1" aria-selected="true">⭕ paso1</button>
+                <button class="nav-link text-success active" id="paso1-tab" data-bs-toggle="tab" data-bs-target="#paso1" type="button"
+                    role="tab" aria-controls="paso1" aria-selected="true"><i class="fa fa-check-circle  "></i> Datos Personales <sup>1</sup></button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="paso2-tab" data-bs-toggle="tab" data-bs-target="#paso2" type="button"
-                    role="tab" aria-controls="paso2" aria-selected="false" tabindex="-1">⭕ paso2</button>
+                <button class="nav-link text-black-50" id="paso2-tab" data-bs-toggle="tab" data-bs-target="#paso2" type="button"
+                    role="tab" aria-controls="paso2" aria-selected="false" tabindex="-1"><i class="fa fa-exclamation-circle  "></i> Direcciones <sup>2</sup></button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="paso3-tab" data-bs-toggle="tab" data-bs-target="#paso3" type="button"
-                    role="tab" aria-controls="paso3" aria-selected="false" tabindex="-1">⭕ paso3</button>
+                <button class="nav-link text-black-50" id="paso3-tab" data-bs-toggle="tab" data-bs-target="#paso3" type="button"
+                    role="tab" aria-controls="paso3" aria-selected="false" tabindex="-1"><i class="fa fa-exclamation-circle  "></i> Datos de Empleo <sup>3</sup></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-black-50" id="paso4-tab" data-bs-toggle="tab" data-bs-target="#paso4" type="button"
+                    role="tab" aria-controls="paso4" aria-selected="false" tabindex="-1"><i class="fa fa-exclamation-circle  "></i> Datos de Pago <sup>4</sup></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-black-50" id="paso5-tab" data-bs-toggle="tab" data-bs-target="#paso5" type="button"
+                    role="tab" aria-controls="paso5" aria-selected="false" tabindex="-1"><i class="fa fa-exclamation-circle  "></i> Contactos de Emergencia <sup>5</sup></button>
             </li>
         </ul>
         <div class="tab-content pt-2" id="myTabContent">
             <div class="tab-pane fade show active" id="paso1" role="tabpanel" aria-labelledby="paso1-tab">
-                <form [formGroup]="datosPersonalesForm">
-                    <div class="row">
-                        <div class="col col-6">
-                            <img src="" alt="" style="background-color: gray;width: 120px;height: 120px;">
-                            <input class="form-control" type="file" id="formFile">
+                <form [formGroup]="datosPersonalesForm" (ngSubmit)="guardarDatosPersonales()">
+                    <div class="row justify-content-center mt-3">
+                        <div class="col col-12 col-sm-12 col-md-5 col-lg-4">
+                            <div class="pt-5 text-center" >
+                                <div alt="" style="margin: auto;background-image: url('assets/user_profile.jpg');border-radius: 100%;background-size: cover;background-repeat: no-repeat;background-position: center center;background-color: #efefef;width: 170px;height: 170px;border: var(--bs-border-width) solid var(--bs-border-color);border-radius: 100%;"></div>
+                                <input name="foto" class="form-control mt-2" type="file" id="formFile">
+                            </div>
                         </div>
-                        <div class="col col-6">
-                            <div class="">
+                        <div class="col col-12 col-sm-12 col-md-1 col-lg-1">
+                            &nbsp;
+                        </div>
+                        <div class="col col-12 col-sm-12 col-md-5 col-lg-5">
+                            <div class="pt-3">
                                 <label for="nombre">
-                                    <span title="informacion">ℹ️</span> Nombre <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Nombre <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
-                                <input name="nombre" class="form-control" type="text" placeholder="Nombre">
+                                <input name="nombre" class="form-control" type="text" placeholder="Nombre" style="text-transform: uppercase;">
                             </div>
-                            <div class="pt-2">
-                                <label for="primer_apellido">
-                                    <span title="informacion">ℹ️</span> Primer apellido <span class="text-danger">*</span>
-                                </label>
-                                <input name="primerApellido" class="form-control" type="text" placeholder="Primer apellido">
-                            </div>
-                            <div class="pt-2">
-                                <label for="segundo_apellido">
-                                    <span title="informacion">ℹ️</span> Segundo apellido <span class="text-danger">*</span>
-                                </label>
-                                <input name="segundoApellido" class="form-control" type="text" placeholder="Segundo apellido">
-                            </div>
-                            <div class="pt-2">
-                                <label for="rfc">
-                                    <span title="informacion">ℹ️</span> RFC <span class="text-danger">*</span>
-                                </label>
-                                <input name="rfc" class="form-control" type="text" placeholder="RFC">
-                            </div>
-                            <div class="pt-2">
-                                <label for="curp">
-                                    <span title="informacion">ℹ️</span> CURP <span class="text-danger">*</span>
-                                </label>
-                                <input name="curp" class="form-control" type="text" placeholder="CURP">
-                            </div>
-                            <div class="pt-2">
-                                <label for="catSexoId">
-                                    <span title="informacion">ℹ️</span> Sexo <span class="text-danger">*</span>
-                                </label>
-                                <select name="catSexoId" class="form-select">
-                                    <option value="">-- Selecciona --</option>
-                                    <option value="M">Mujer</option>
-                                    <option value="H">Hombre</option>
-                                </select>
-                            </div>
-                            <div class="pt-2">
-                                <label for="catEstadoCivilId">
-                                    <span title="informacion">ℹ️</span> Estado civil <span class="text-danger">*</span>
-                                </label>
-                                <select name="catEstadoCivilId" class="form-select">
-                                    <option value="">-- Selecciona --</option>
-                                    <option value="soltero">Soltero(a)</option>
-                                    <option value="casado">Casado(a)</option>
-                                    <option value="union_libre">Unión libre</option>
-                                    <option value="divorciado">Divorciado(a)</option>
-                                    <option value="viudo">Viudo(a)</option>
-                                    <option value="separado">Separado(a)</option>
-                                </select>
+                            <div class="row">
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="primer_apellido">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Primer apellido <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <input name="primerApellido" class="form-control" type="text" placeholder="Primer apellido" style="text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="segundo_apellido">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Segundo apellido
+                                        </label>
+                                        <input name="segundoApellido" class="form-control" type="text" placeholder="Segundo apellido" style="text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="rfc">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;RFC <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <input name="rfc" class="form-control" type="text" placeholder="RFC" style="text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="curp">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;CURP <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <input name="curp" class="form-control" type="text" placeholder="CURP" style="text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="catSexoId">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Sexo <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <select name="catSexoId" class="form-select">
+                                            <option value="">-- Selecciona --</option>
+                                            <option value="M">Mujer</option>
+                                            <option value="H">Hombre</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="catEstadoCivilId">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Estado civil <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <select name="catEstadoCivilId" class="form-select">
+                                            <option value="">-- Selecciona --</option>
+                                            <option value="soltero">Soltero(a)</option>
+                                            <option value="casado">Casado(a)</option>
+                                            <option value="union_libre">Unión libre</option>
+                                            <option value="divorciado">Divorciado(a)</option>
+                                            <option value="viudo">Viudo(a)</option>
+                                            <option value="separado">Separado(a)</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="pt-2">
+                            <button type="submit" class="btn btn-primary mt-5 mb-4"><i class="fa fa-bookmark me-1"></i> Guardar</button>
+
+                            <!-- <div class="pt-3">
                                 <label for="qnaini">
-                                    <span title="informacion">ℹ️</span> Quincena ingreso <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Quincena ingreso <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <input name="qnaini" class="form-control" type="text" placeholder="Quincena ingreso">
                             </div>
-                            <div class="pt-2">
+                            <div class="pt-3">
                                 <label for="qnagob">
-                                    <span title="informacion">ℹ️</span> Quincena gobierno <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Quincena gobierno <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <input name="qnagob" class="form-control" type="text" placeholder="Quincena gobierno">
                             </div>
-                            <div class="pt-2">
+                            <div class="pt-3">
                                 <label for="qnasep">
-                                    <span title="informacion">ℹ️</span> Quincena SEP <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Quincena SEP <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <input name="qnasep" class="form-control" type="text" placeholder="Quincena SEP">
                             </div>
-                            <div class="pt-2">
+                            <div class="pt-3">
                                 <label for="perfil">
-                                    <span title="informacion">ℹ️</span> Perfil <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Perfil <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <input name="perfil" class="form-control" type="text" placeholder="Perfil">
                             </div>
-                            <div class="pt-2">
+                            <div class="pt-3">
                                 <label for="nss">
-                                    <span title="informacion">ℹ️</span> NSS <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;NSS <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <input name="nss" class="form-control" type="text" placeholder="NSS">
                             </div>
 
-                            <div class="pt-2">
+                            <div class="pt-3">
                                 <label for="catRegimenId">
-                                    <span title="informacion">ℹ️</span> Regimen <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Regimen <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <select name="catRegimenId" class="form-select">
                                     <option value="">-- Selecciona --</option>
@@ -123,9 +152,9 @@
                                     <option value="3">3</option>
                                 </select>
                             </div>
-                            <div class="pt-2">
+                            <div class="pt-3">
                                 <label for="catTipoContratacionId">
-                                    <span title="informacion">ℹ️</span> Tipo contratación <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Tipo contratación <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <select name="catTipoContratacionId" class="form-select">
                                     <option value="">-- Selecciona --</option>
@@ -134,12 +163,12 @@
                                     <option value="3">3</option>
                                 </select>
                             </div>
-                            <div class="pt-2">
+                            <div class="pt-3">
                                 <label for="nivelAcademicoId">
-                                    <span title="informacion">ℹ️</span> Nivel academico <span class="text-danger">*</span>
+                                    <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Nivel academico <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
                                 <input name="nivelAcademicoId" class="form-control" type="text" placeholder="Nivel academico">
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </form>
