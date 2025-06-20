@@ -5,6 +5,7 @@ import { NewtrabajadorComponent } from './newtrabajador/newtrabajador.component'
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { RecursosHumanosRoutingModule } from './recursos-humanos-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RecursosHumanosRoutingModule } from './recursos-humanos-routing.module'
     CommonModule,
     SharedModule,
     FormsModule,
-    RecursosHumanosRoutingModule
+    RecursosHumanosRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class RecursosHumanosModule { }
