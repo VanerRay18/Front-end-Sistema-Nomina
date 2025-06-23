@@ -43,7 +43,7 @@
                                 <label for="nombre">
                                     <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Nombre <span class="text-danger" style="font-weight: bold;">*</span>
                                 </label>
-                                <input name="nombre" class="form-control" type="text" placeholder="Nombre" style="text-transform: uppercase;">
+                                <input name="nombre" formControlName="nombre" class="form-control" type="text" placeholder="Nombre" style="text-transform: uppercase;">
                             </div>
                             <div class="row">
                                 <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
@@ -51,7 +51,7 @@
                                         <label for="primer_apellido">
                                             <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Primer apellido <span class="text-danger" style="font-weight: bold;">*</span>
                                         </label>
-                                        <input name="primerApellido" class="form-control" type="text" placeholder="Primer apellido" style="text-transform: uppercase;">
+                                        <input name="primerApellido" formControlName="primerApellido" class="form-control" type="text" placeholder="Primer apellido" style="text-transform: uppercase;">
                                     </div>
                                 </div>
                                 <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
@@ -59,7 +59,7 @@
                                         <label for="segundo_apellido">
                                             <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Segundo apellido
                                         </label>
-                                        <input name="segundoApellido" class="form-control" type="text" placeholder="Segundo apellido" style="text-transform: uppercase;">
+                                        <input name="segundoApellido" formControlName="segundoApellido" class="form-control" type="text" placeholder="Segundo apellido" style="text-transform: uppercase;">
                                     </div>
                                 </div>
                                 <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
@@ -67,7 +67,7 @@
                                         <label for="rfc">
                                             <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;RFC <span class="text-danger" style="font-weight: bold;">*</span>
                                         </label>
-                                        <input name="rfc" class="form-control" type="text" placeholder="RFC" style="text-transform: uppercase;">
+                                        <input name="rfc" formControlName="rfc" class="form-control" type="text" placeholder="RFC" style="text-transform: uppercase;">
                                     </div>
                                 </div>
                                 <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
@@ -75,7 +75,7 @@
                                         <label for="curp">
                                             <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;CURP <span class="text-danger" style="font-weight: bold;">*</span>
                                         </label>
-                                        <input name="curp" class="form-control" type="text" placeholder="CURP" style="text-transform: uppercase;">
+                                        <input name="curp" formControlName="curp" class="form-control" type="text" placeholder="CURP" style="text-transform: uppercase;">
                                     </div>
                                 </div>
                                 <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
@@ -83,10 +83,9 @@
                                         <label for="catSexoId">
                                             <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Sexo <span class="text-danger" style="font-weight: bold;">*</span>
                                         </label>
-                                        <select name="catSexoId" class="form-select">
+                                        <select name="catSexoId" formControlName="catSexoId" class="form-select">
                                             <option value="">-- Selecciona --</option>
-                                            <option value="M">Mujer</option>
-                                            <option value="H">Hombre</option>
+                                            <option *ngFor="let data of catSexo" [value]="data['id']">{{ data['sexo'] }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -95,14 +94,39 @@
                                         <label for="catEstadoCivilId">
                                             <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Estado civil <span class="text-danger" style="font-weight: bold;">*</span>
                                         </label>
-                                        <select name="catEstadoCivilId" class="form-select">
+                                        <select name="catEstadoCivilId" formControlName="catEstadoCivilId" class="form-select">
                                             <option value="">-- Selecciona --</option>
-                                            <option value="soltero">Soltero(a)</option>
-                                            <option value="casado">Casado(a)</option>
-                                            <option value="union_libre">Unión libre</option>
-                                            <option value="divorciado">Divorciado(a)</option>
-                                            <option value="viudo">Viudo(a)</option>
-                                            <option value="separado">Separado(a)</option>
+                                            <option *ngFor="let data of catEstadoCivil" [value]="data['id']">{{ data['estadoCivil'] }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="nss">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;NSS <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <input name="nss" formControlName="nss" class="form-control" type="text" placeholder="NSS" style="text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="catRegimenId">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Régimen <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <select name="catRegimenId" formControlName="catRegimenId" class="form-select">
+                                            <option value="">-- Selecciona --</option>
+                                            <option *ngFor="let data of catRegimen" [value]="data['id']">{{ data['regimen'] }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+                                    <div class="pt-3">
+                                        <label for="nivelAcademicoId">
+                                            <i class="fa fa-info-circle fa-1 text-primary" aria-hidden="true" title="Información" ></i>&nbsp;Nivel académico <span class="text-danger" style="font-weight: bold;">*</span>
+                                        </label>
+                                        <select name="nivelAcademicoId" formControlName="nivelAcademicoId" class="form-select">
+                                            <option value="">-- Selecciona --</option>
+                                            <option *ngFor="let data of catNivelAcademico" [value]="data['id']">{{ data['nivelAcademico'] }}</option>
                                         </select>
                                     </div>
                                 </div>

@@ -9,52 +9,89 @@ import { RhService } from 'src/app/services/rh.service';
 })
 export class NewtrabajadorComponent implements OnInit {
   datosPersonalesForm: FormGroup;
-  // nombre: string = '';
+
+  catSexo = [];
+  catRegimen = [];
+  catEstadoCivil = [];
+  catNivelAcademico = [];
 
   constructor(private dpf: FormBuilder, private rh: RhService, private FormsModule: FormsModule,
   ) {
     this.datosPersonalesForm = this.dpf.group({
       // nombre: ['', [Validators.required , Validators.minLength(15) ]],
-      foto: [null],
+      // foto: [null],
       nombre: [''],
       primerApellido: [''],
       segundoApellido: [''],
       rfc: [''],
       curp: [''],
       catSexoId: [''],
-      catEstadoCivilId: ['']
+      catEstadoCivilId: [''],
+      nss: [''],
+      catRegimenId: [''],
+      nivelAcademicoId: ['']
     });
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+ 
+    this.rh.getCatalogos().subscribe(
+      (response) => {
+        this.catSexo = response.data.catSexo;
+        this.catRegimen = response.data.catRegimen;
+        this.catEstadoCivil = response.data.catEstadoCivil;
+        this.catNivelAcademico = response.data.catNivelAcademico;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
   }
+  
 
   guardarDatosPersonales()
   {
     const formDP = this.datosPersonalesForm.value;
 
     const dto = {
-      foto: formDP.foto,
-      nombre: formDP.nombre,
-      primerApellido: formDP.primerApellido,
-      segundoApellido: formDP.segundoApellido,
-      rfc: formDP.rfc,
-      curp: formDP.curp,
-      catSexoId: Number(formDP.catSexoId),
-      catEstadoCivilId: Number(formDP.catEstadoCivilId)
+      // foto: formDP.foto,
+      rfc: formDP.rfc, // Personal
+      curp: formDP.curp, // Personal
+      primerApellido: formDP.primerApellido, // Personal
+      segundoApellido: formDP.segundoApellido, // Personal
+      nombre: formDP.nombre, // Personal
+          qnaini: null, // Laboral 
+          qnagob: null, // Laboral 
+          qnasep: null, // Laboral 
+          perfil: null, // Laboral 
+      nss: formDP.nss, // Personal
+      catSexoId: Number(formDP.catSexoId), // Personal
+      catEstadoCivilId: Number(formDP.catEstadoCivilId), // Personal
+      catRegimenId: Number(formDP.catRegimenId), // Personal
+          catTipoContratacionId: null,  // Laboral 
+      nivelAcademicoId: Number(formDP.nivelAcademicoId), // Profesional
+          nivel: [0], // Laboral 
+      activo: true // Usuario
     };
 
-    this.rh.saveNuevoTrabajador(dto).subscribe(
-    (response) => {
-      console.log(response);
-      // this.router.navigate(['/pages/Inicio/General']); // Navegar al nuevo path
-    },
-    (error) => {
-      console.log(error);
+    if( dto.rfc != '' && dto.curp != '' && dto.primerApellido != '' && dto.segundoApellido != '' && dto.nombre != '' && dto.nss != '' && dto.catSexoId > 0 && dto.catEstadoCivilId > 0 && dto.catRegimenId > 0 && dto.nivelAcademicoId > 0)
+    {
+        this.rh.saveNuevoTrabajador(dto).subscribe(
+          (response) => {
+            console.log('response',response);
+            // this.router.navigate(['/pages/Inicio/General']); // Navegar al nuevo path
+          },
+          (error) => {
+            console.log('error',error);
+          }
+          
+        );
+    } else {
+      alert('Por favor, complete todos los campos obligatorios.');
     }
-    
-  );
+
+  
 
   }
 
