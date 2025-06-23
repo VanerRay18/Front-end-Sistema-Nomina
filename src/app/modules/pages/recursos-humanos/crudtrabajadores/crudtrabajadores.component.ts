@@ -14,10 +14,10 @@ import { RhService } from 'src/app/services/rh.service';
 export class CRUDTrabajadoresComponent implements OnInit{
   searchTerm: string = '';
   headersB = ['id','Nombre','Primer Apellido','Segundo Apellido','RFC','CURP', 'Sexo', 'Estado Civil','Quincena de ingreso', 'Quincena gobierno', 'Quincena Sep', 'Perfil', 'Seguro Social', 'Regimen', 'Tipo de contratacion', 'Nivel', 'Nivel academico', 'Status', ''];
-  displayedColumnsB = ['id','nombre','primer_apellido ','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
+  displayedColumnsB = ['id','nombre','primer_apellido','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
   dataB:any[] = [];
   headersC = ['id','Nombre','Primer Apellido','Segundo Apellido','RFC','CURP', 'Sexo', 'Estado Civil','Quincena de ingreso', 'Quincena gobierno', 'Quincena Sep', 'Perfil', 'Seguro Social', 'Regimen', 'Tipo de contratacion', 'Nivel', 'Nivel academico', 'Status', ''];
-  displayedColumnsC = ['id','nombre','primer_apellido ','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
+  displayedColumnsC = ['id','nombre','primer_apellido','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
   dataC:any[] = [];
   crearlayout:any;
   isLoading = false;
