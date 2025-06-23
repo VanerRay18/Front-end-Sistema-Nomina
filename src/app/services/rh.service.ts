@@ -19,4 +19,10 @@ export class RhService {
     return this.http.post<ApiResponse>(`${environment.baseService}${'/employee'}`,data);
   }
 
+
+  getCatalogos(): Observable<ApiResponse> {//Trae la nomina actual
+
+    return this.http.get<ApiResponse>(`${environment.baseService}${'/catalogo/catEmployee'}`);
+  }
+
 }
