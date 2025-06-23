@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { RhService } from 'src/app/services/rh.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class NewtrabajadorComponent implements OnInit {
   catNivelAcademico = [];
 
   constructor(private dpf: FormBuilder, private rh: RhService, private FormsModule: FormsModule,
-  ) {
+ private router: Router) {
     this.datosPersonalesForm = this.dpf.group({
       // nombre: ['', [Validators.required , Validators.minLength(15) ]],
       // foto: [null],
@@ -56,11 +58,11 @@ export class NewtrabajadorComponent implements OnInit {
 
     const dto = {
       // foto: formDP.foto,
-      rfc: formDP.rfc, // Personal
-      curp: formDP.curp, // Personal
-      primerApellido: formDP.primerApellido, // Personal
-      segundoApellido: formDP.segundoApellido, // Personal
-      nombre: formDP.nombre, // Personal
+      rfc: formDP.rfc.toUpperCase(), // Personal
+      curp: formDP.curp.toUpperCase(), // Personal
+      primerApellido: formDP.primerApellido.toUpperCase(), // Personal
+      segundoApellido: formDP.segundoApellido.toUpperCase(), // Personal
+      nombre: formDP.nombre.toUpperCase(), // Personal
           qnaini: null, // Laboral 
           qnagob: null, // Laboral 
           qnasep: null, // Laboral 
@@ -69,7 +71,7 @@ export class NewtrabajadorComponent implements OnInit {
       catSexoId: Number(formDP.catSexoId), // Personal
       catEstadoCivilId: Number(formDP.catEstadoCivilId), // Personal
       catRegimenId: Number(formDP.catRegimenId), // Personal
-          catTipoContratacionId: null,  // Laboral 
+          catTipoContratacionId: 10,  // Laboral 
       nivelAcademicoId: Number(formDP.nivelAcademicoId), // Profesional
           nivel: [0], // Laboral 
       activo: true // Usuario
@@ -79,8 +81,13 @@ export class NewtrabajadorComponent implements OnInit {
     {
         this.rh.saveNuevoTrabajador(dto).subscribe(
           (response) => {
-            console.log('response',response);
-            // this.router.navigate(['/pages/Inicio/General']); // Navegar al nuevo path
+            Swal.fire({
+                title: '',
+                text: 'El trabajador se insertó exitosamente',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+            this.router.navigate(['/pages/RH/CRUD-Trabajadores']); // Navegar al nuevo path
           },
           (error) => {
             console.log('error',error);

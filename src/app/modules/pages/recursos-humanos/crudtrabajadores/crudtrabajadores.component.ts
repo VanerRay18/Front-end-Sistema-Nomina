@@ -14,10 +14,10 @@ import { RhService } from 'src/app/services/rh.service';
 export class CRUDTrabajadoresComponent implements OnInit{
   searchTerm: string = '';
   headersB = ['id','Nombre','Primer Apellido','Segundo Apellido','RFC','CURP', 'Sexo', 'Estado Civil','Quincena de ingreso', 'Quincena gobierno', 'Quincena Sep', 'Perfil', 'Seguro Social', 'Regimen', 'Tipo de contratacion', 'Nivel', 'Nivel academico', 'Status', ''];
-  displayedColumnsB = ['id','nombre','primer_apellido','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
+  displayedColumnsB = ['id','nombre','primerApellido','segundoApellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
   dataB:any[] = [];
   headersC = ['id','Nombre','Primer Apellido','Segundo Apellido','RFC','CURP', 'Sexo', 'Estado Civil','Quincena de ingreso', 'Quincena gobierno', 'Quincena Sep', 'Perfil', 'Seguro Social', 'Regimen', 'Tipo de contratacion', 'Nivel', 'Nivel academico', 'Status', ''];
-  displayedColumnsC = ['id','nombre','primer_apellido','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
+  displayedColumnsC = ['id','nombre','primerApellido','segundoApellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
   dataC:any[] = [];
   crearlayout:any;
   isLoading = false;
@@ -45,7 +45,39 @@ export class CRUDTrabajadoresComponent implements OnInit{
     this.getData();
   }
 
-  onDelete(licenciaId: any) {
+  onDelete(employeeId: any) {
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡No podrás deshacer esta acción!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminarlo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.rh.deleteEmployee(employeeId.id).subscribe(
+          (response: ApiResponse) => {
+            console.log('Respuesta del servicio de eliminación:', response);
+            Swal.fire(
+              'Eliminado',
+              'El empleado ha sido eliminado.',
+              'success'
+            );
+            this.getData(); // Actualiza la lista de empleados
+          },
+          (error) => {
+            console.error('Error al eliminar el empleado:', error);
+            Swal.fire(
+              'Error',
+              'No se pudo eliminar el empleado. Inténtalo de nuevo más tarde.',
+              'error'
+            );
+          }
+        );
+      }
+    });
 
   }
 

@@ -16,8 +16,6 @@ export class RhService {
 
   getEmployees( page: any, size: any): Observable<ApiResponse> {
     let headers = new HttpHeaders({ 'page': page, 'size': size });
-     console.log('Headers:', headers);
-    console.log(`${environment.baseService}${'/employee'}`)
     return this.http.get<ApiResponse>(`${environment.baseService}${'/employee'}`,
       {headers});
   }
@@ -31,6 +29,13 @@ export class RhService {
   getCatalogos(): Observable<ApiResponse> {//Trae la nomina actual
 
     return this.http.get<ApiResponse>(`${environment.baseService}${'/catalogo/catEmployee'}`);
+  }
+
+  deleteEmployee(employeeId: any): Observable<ApiResponse> {
+    console.log(employeeId);
+    let headers = new HttpHeaders({ 'employeeId': employeeId });
+    console.log(headers); 
+    return this.http.patch<ApiResponse>(`${environment.baseService}${'/employee/softdelete'}`,null,{headers});
   }
 
 }
