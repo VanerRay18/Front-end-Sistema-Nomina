@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { FileTransferService } from 'src/app/services/file-transfer.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { RhService } from 'src/app/services/rh.service';
 @Component({
   selector: 'app-crudtrabajadores',
   templateUrl: './crudtrabajadores.component.html',
@@ -13,10 +14,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CRUDTrabajadoresComponent implements OnInit{
   searchTerm: string = '';
   headersB = ['id','Nombre','Primer Apellido','Segundo Apellido','RFC','CURP', 'Sexo', 'Estado Civil','Quincena de ingreso', 'Quincena gobierno', 'Quincena Sep', 'Perfil', 'Seguro Social', 'Regimen', 'Tipo de contratacion', 'Nivel', 'Nivel academico', 'Status', ''];
-  displayedColumnsB = ['id','nombre','primer_apellido ','segundo_apellido','rfc','curp', 'sexo', 'estado_civil','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'regimen', 'tipo_contratacion', 'nivel', 'nivel_academico', 'activo'];
+  displayedColumnsB = ['id','nombre','primer_apellido ','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
   dataB:any[] = [];
   headersC = ['id','Nombre','Primer Apellido','Segundo Apellido','RFC','CURP', 'Sexo', 'Estado Civil','Quincena de ingreso', 'Quincena gobierno', 'Quincena Sep', 'Perfil', 'Seguro Social', 'Regimen', 'Tipo de contratacion', 'Nivel', 'Nivel academico', 'Status', ''];
-  displayedColumnsC = ['id','nombre','primer_apellido ','segundo_apellido','rfc','curp', 'sexo', 'estado_civil','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'regimen', 'tipo_contratacion', 'nivel', 'nivel_academico', 'activo'];
+  displayedColumnsC = ['id','nombre','primer_apellido ','segundo_apellido','rfc','curp', 'catSexoId', 'catEstadoCivilId','qnaini', 'qnagob', 'qnasep', 'perfil', 'nss', 'catRegimenId', 'catTipoContratacionId', 'nivel', 'nivelAcademicoId', 'activo'];
   dataC:any[] = [];
   crearlayout:any;
   isLoading = false;
@@ -35,7 +36,8 @@ export class CRUDTrabajadoresComponent implements OnInit{
   constructor(
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private rh: RhService
   ) {
   }
 
@@ -48,91 +50,17 @@ export class CRUDTrabajadoresComponent implements OnInit{
   }
 
 getData() {
-  this.dataB = [
-    {
-      id: 1,
-      nombre: 'Juan',
-      primer_apellido: 'Pérez',
-      segundo_apellido: 'López',
-      rfc: 'PEPJ800101HDF',
-      curp: 'PEPJ800101HDFRZN00',
-      sexo: 'Masculino',
-      estado_civil: 'Soltero',
-      qnaini: '2023-01',
-      qnagob: '2023-02',
-      qnasep: '2023-03',
-      perfil: 'Docente',
-      nss: '12345678901',
-      regimen: 'Ordinario',
-      tipo_contratacion: 'Base',
-      nivel: 'P1',
-      nivel_academico: 'Licenciatura',
-      activo: true
-    },
-    {
-      id: 2,
-      nombre: 'María',
-      primer_apellido: 'Gómez',
-      segundo_apellido: 'Hernández',
-      rfc: 'GOHM900202MDF',
-      curp: 'GOHM900202MDFRLR00',
-      sexo: 'Femenino',
-      estado_civil: 'Casada',
-      qnaini: '2022-10',
-      qnagob: '2022-11',
-      qnasep: '2022-12',
-      perfil: 'Administrativo',
-      nss: '98765432109',
-      regimen: 'Especial',
-      tipo_contratacion: 'Base',
-      nivel: 'A2',
-      nivel_academico: 'Maestría',
-      activo: false
-    }
-  ];
+  let page = "0";
+  let size = "50";
+  console.log('Llamando al servicio para obtener empleados con página:', page, 'y tamaño:', size);
+  this.rh.getEmployees(page, size).subscribe((response: ApiResponse) => {
+    console.log('Respuesta del servicio:', response);
+    console.log('Datos obtenidos:', response.data);
+       this.dataB = response.data.base;
+       this.dataC = response.data.otros;
+        // console.log('Datos obtenidos:', this.data);
+      });
 
-  this.dataC = [
-    {
-      id: 3,
-      nombre: 'Carlos',
-      primer_apellido: 'Ramírez',
-      segundo_apellido: 'Nava',
-      rfc: 'RANC850505HDF',
-      curp: 'RANC850505HDFMRV00',
-      sexo: 'Masculino',
-      estado_civil: 'Divorciado',
-      qnaini: '2021-08',
-      qnagob: '2021-09',
-      qnasep: '2021-10',
-      perfil: 'Técnico',
-      nss: '11223344556',
-      regimen: 'Ordinario',
-      tipo_contratacion: 'Eventual',
-      nivel: 'T3',
-      nivel_academico: 'Técnico Superior',
-      activo: true
-    },
-    {
-      id: 4,
-      nombre: 'Laura',
-      primer_apellido: 'Martínez',
-      segundo_apellido: 'Soto',
-      rfc: 'MASL920304MDF',
-      curp: 'MASL920304MDFRRL00',
-      sexo: 'Femenino',
-      estado_civil: 'Viuda',
-      qnaini: '2020-05',
-      qnagob: '2020-06',
-      qnasep: '2020-07',
-      perfil: 'Directivo',
-      nss: '66778899001',
-      regimen: 'Especial',
-      tipo_contratacion: 'Honorarios',
-      nivel: 'D1',
-      nivel_academico: 'Doctorado',
-      activo: false
-    }
-  ];
 }
 
   setActiveTab(tabId: string) {
