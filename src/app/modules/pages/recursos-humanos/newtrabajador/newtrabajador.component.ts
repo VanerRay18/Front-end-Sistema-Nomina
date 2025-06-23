@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { RhService } from 'src/app/services/rh.service';
 
 @Component({
   selector: 'app-newtrabajador',
@@ -10,7 +11,7 @@ export class NewtrabajadorComponent implements OnInit {
   datosPersonalesForm: FormGroup;
   // nombre: string = '';
 
-  constructor(private dpf: FormBuilder, private FormsModule: FormsModule,
+  constructor(private dpf: FormBuilder, private rh: RhService, private FormsModule: FormsModule,
   ) {
     this.datosPersonalesForm = this.dpf.group({
       // nombre: ['', [Validators.required , Validators.minLength(15) ]],
@@ -31,26 +32,30 @@ export class NewtrabajadorComponent implements OnInit {
 
   guardarDatosPersonales()
   {
-    const formValue = this.datosPersonalesForm.value;
+    const formDP = this.datosPersonalesForm.value;
 
-    // const dto = {
-    //   name,
-    //   firstSurname,
-    //   secondSurname,
-    //   rfc: formValue.rfc,
-    //   curp: formValue.curp,
-    //   nacimiento: new Date(formValue.fechaNacimiento).toISOString(),
-    //   dateStart: new Date(formValue.fechaInicio).toISOString(),
-    //   dateFin: null,
-    //   entrada: formatHorario(formValue.horarioEnt),
-    //   salida: formatHorario(formValue.horarioSal),
-    //   active: true,
-    //   phone: formValue.telefono,
-    //   config: {},
-    //   catJobId: Number(formValue.puestoLaboral),
-    //   catEmploymentId: Number(formValue.tipoContratacion),
-    //   catSeguroId: Number(formValue.tipoSeguro),-+
-    // };
+    const dto = {
+      foto: formDP.foto,
+      nombre: formDP.nombre,
+      primerApellido: formDP.primerApellido,
+      segundoApellido: formDP.segundoApellido,
+      rfc: formDP.rfc,
+      curp: formDP.curp,
+      catSexoId: Number(formDP.catSexoId),
+      catEstadoCivilId: Number(formDP.catEstadoCivilId)
+    };
+
+    this.rh.saveNuevoTrabajador(dto).subscribe(
+    (response) => {
+      console.log(response);
+      // this.router.navigate(['/pages/Inicio/General']); // Navegar al nuevo path
+    },
+    (error) => {
+      console.log(error);
+    }
+    
+  );
+
   }
 
 }
