@@ -14,6 +14,14 @@ export class RhService {
 
   }
 
+  getEmployees( page: any, size: any): Observable<ApiResponse> {
+    let headers = new HttpHeaders({ 'page': page, 'size': size });
+     console.log('Headers:', headers);
+    console.log(`${environment.baseService}${'/employee'}`)
+    return this.http.get<ApiResponse>(`${environment.baseService}${'/employee'}`,
+      {headers});
+  }
+
   saveNuevoTrabajador(data:any): Observable<ApiResponse> {//Trae la nomina actual
 
     return this.http.post<ApiResponse>(`${environment.baseService}${'/employee'}`,data);

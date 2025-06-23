@@ -33,7 +33,7 @@ export class AuthService {
 
   authToken(token: any): Observable<ApiResponse> {
     let headers = new HttpHeaders({'token': token})
-    return this.http.post<ApiResponse>(`${environment.baseService}${'/users/validateToken'}`, null, 
+    return this.http.post<ApiResponse>(`${environment.baseService}${'/users/validateToken'}`, null,
       {headers}
     );
   }
@@ -64,10 +64,8 @@ export class AuthService {
   //   return this.http.post<any>(`${environment.baseService}${'/login'}`, {headers});
   // }
 
-  getModulesByRole(rolId: any,extras:any): Observable<ApiResponse> {
-    let headers = new HttpHeaders({'rolId': rolId, 'extras':extras})
-    return this.http.get<ApiResponse>(`${environment.baseService}${'/user/roleByModule'}`,
-      {headers}
+  getModulesByRole(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${environment.baseService}${'/users/moduleByUser'}`
     );
   }
 
@@ -128,7 +126,7 @@ export class AuthService {
       let headers = new HttpHeaders({'userId': userId})
       return this.http.get<ApiResponse>(`${environment.baseService}${'/notifications'}`,
         {headers}
-      );    
+      );
     }
 
 

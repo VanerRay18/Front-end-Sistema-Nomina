@@ -118,7 +118,7 @@ export class NavComponent implements OnInit, OnDestroy {
     const rolId = localStorage.getItem('rolId');
     const extras = localStorage.getItem('extras')
     if (rolId) {
-      const sub = this.authService.getModulesByRole(rolId,extras).subscribe({
+      const sub = this.authService.getModulesByRole().subscribe({
         next: (result) => {
           console.log('Módulos obtenidos:', result);
           const modules: TreeNode[] = result.data

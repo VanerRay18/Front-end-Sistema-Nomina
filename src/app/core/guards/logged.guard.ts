@@ -33,7 +33,7 @@ export class LoggedGuard implements CanActivate, CanLoad {
       const requestedPath = state.url.slice(1); // Remueve el primer '/'
 
       return new Promise<boolean>((resolve) => {
-        this.authService.getModulesByRole(rolId, extras).subscribe(
+        this.authService.getModulesByRole().subscribe(
           (response: ApiResponse) => {
             if (response.success) {
               const allowedModules: Module[] = response.data;
